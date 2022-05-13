@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>CyprusArk</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css'%}" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="alt">
+				<div class="logo"><a href="/">CyprusArk <span></span></a></div>
+					
+				
+				<a href="#menu">Menu</a>
+		
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/">Home</a></li>
+					<li><a href="/">Collections</a></li>
+					<li><a href="/">Collections Items</a></li>
+				</ul>
+			</nav>
+		
+	       </header>
+		<!-- Banner images for slider model -->
+   
+
+       
+         
+      
+		   <section class="banner full">
+             {% for slide in slider %}
+				<article>
+					<img src="{{slide.slider_image.url}}" alt="" />
+					
+					<div class="inner">
+						<header>
+						
+						 <p>{{slide.slider_description|safe}}</p>
+
+						 <h2>{{slide.title}}</h2>
+
+						</header>
+					</div>
+				</article>
+                {% endfor %}
+            </section>
+  <br>
+  <br>
+      <div class="container">
+            {% for x in museum %}
+			    <h2>{{x.museum_name}}</h2>
+				{% if x.logo %}
+				<img src="{{x.logo.url}}"alt="museum image" width=100px, height=107px>
+				{% endif %}
+           
+		    <hr>
+			{{x.description}}
+			<br>
+			{{x.phone}}
+			<br>
+			{% if x.city %}
+			{{x.city}}
+			{% endif %}
+			<br>
+			{{x.country}}
+			<br>
+			{{x.address}}
+			{% endfor %}
+	   </div>
+	   <br>
+       <br>
+		<!-- One -->
+       
+			<section id="one" class="wrapper style2">
+				<div class="inner">
+					<div class="grid-style">
+                 
+                    {% for x in collection %}
+					
+						<div>
+							<div class="box">
+								<div class="image fit">
+									{% if x.photo %}
+									<img src="{{x.photo.url}}"alt="museum image" width=658px, height=567px>
+									{% endif %}
+								</div>
+								<div class="content">
+									<header class="align-center">
+										<p> Collection</p>
+										<h2>{{x.collection_name}}</h2>
+										
+									</header>
+									<p>{{x.description |safe|truncatewords:100}}...</p>
+									<footer class="align-center">
+										<a href="{{x.slug}}" class="button alt">Learn More</a>
+									</footer>
+								</div>
+							</div>
+						</div>
+
+					{% endfor %}
+			</section>
+			
+
+		<!-- Two -->
+			<section id="two" class="wrapper style3">
+				<div class="inner">
+					<header class="align-center">
+						<p>Ionian University</p>
+						<h2>Power by CyprusArk</h2>
+					</header>
+				</div>
+			</section>
+
+		<!-- Three -->
+
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; CyprusArk. All rights reserved.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="{% static 'assets/js/jquery.min.js'%}"></script>
+			<script src="{% static 'assets/js/jquery.scrollex.min.js'%}"></script>
+			<script src="{% static 'assets/js/skel.min.js'%}"></script>
+			<script src="{% static 'assets/js/util.js'%}"></script>
+			<script src="{% static 'assets/js/main.js'%}"></script>
+
+	</body>
+</html>
+

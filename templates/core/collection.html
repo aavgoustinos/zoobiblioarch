@@ -1,0 +1,56 @@
+	
+{% extends 'core/base.html' %}
+{% load static %}
+
+
+    
+{% block title %}
+
+<h1>{{collection.collection_name}}</h1>
+<h1>{{collection.museum_name}}</h1>
+
+{% endblock %}
+
+{% block content %}
+
+
+      <div class="container text-center">
+
+{% for x in items %}
+{% if forloop.counter0|divisibleby:3 %} <div class="row"> {%  endif %}
+ <div class="card" style="width: 36rem;">
+  <img class="card-img-top" src="{{x.image_one.url}}" alt="image" width=658px, height=567px class="responsive">
+
+  
+
+  <div class="card-body">
+    <h5 class="card-title">{{x.title}}</h5>
+    <br>
+
+     {% if x.description %}
+    <h6 class="card-title">{{x.description |safe |truncatewords:50 }}</h6>
+    {% endif %}
+
+    <br>
+    <br>
+    <a href="/{{x.slug}}" class="button alt">Read More</a>
+
+  </div>
+</div>
+{% if forloop.counter|divisibleby:3 or forloop.last %}</div><br>
+{% endif %}
+
+
+
+
+
+{% endfor %}
+                
+ 
+
+ {% endblock %}
+
+
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+ <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
