@@ -1,70 +1,79 @@
 from django.contrib import admin
 
-from .models import Slider, Collection, Museum, Museum_Item
-# Register your models here.
-
-# Header
-
-admin.site.site_header ='CyprusArk'
+from .models import Bundle, Slider, Place, CreativeWork, Person
 
 
+admin.site.index_title  =  "Admin Area"
 # Slider
 
 class SliderAdmin(admin.ModelAdmin):
-    list_display = ('title','order')
+   
+    list_display = ('slider_photo','title','order')
 
 
 admin.site.register(Slider, SliderAdmin)
 
 
 # Collection
-class CollectionAdmin(admin.ModelAdmin):
+class BundleAdmin(admin.ModelAdmin):
     
 
     list_display = (
-        'collection_name', 
+        'bundle_photo',
+        'name', 
+        'order',
+        'online',
         
         )
-    list_filter = (
+    
+    list_editable = (
         
-        'collection_name',
+        'online',
+        'order',
+    
     
     )
    
-admin.site.register(Collection,CollectionAdmin)
+admin.site.register(Bundle,BundleAdmin)
 # Museum
-class MuseumAdmin(admin.ModelAdmin):
+class PlaceAdmin(admin.ModelAdmin):
     
 
     list_display = (
-        'museum_name', 
+        'place_photo', 
+        'name', 
+        'classification',
+        'order',
         'online', 
+  
         
         )
-    list_filter = (
+    list_editable = (
         
-        'museum_name',
+        'online',
+        'classification',
+        'order',
+    
     
     )
+
    
-admin.site.register(Museum,MuseumAdmin)
+admin.site.register(Place,PlaceAdmin)
 
 
 #Museum Item
-class Museum_ItemAdmin(admin.ModelAdmin):
+class CreativeWorkAdmin(admin.ModelAdmin):
 
-    
-      
     list_display = (
-        'admin_photo',
+
+        'creative_photo',
         'title',
         'classification',
+        'date',
         'period',
+        'maker',
         'online',
         'order',
-       
-       
-        
         
         )
     list_filter = (
@@ -72,10 +81,18 @@ class Museum_ItemAdmin(admin.ModelAdmin):
         'date',
         'classification',
         'period',
-        'collection',
+    
      
     
     )
+    list_editable = (
+        
+        'online',
+        'classification',
+        'order',
+    )
+    list_per_page =10
+    
    
     search_fields = [
         'title',
@@ -84,10 +101,37 @@ class Museum_ItemAdmin(admin.ModelAdmin):
        
       
     ]
-admin.site.register(Museum_Item,Museum_ItemAdmin)
+admin.site.register(CreativeWork,CreativeWorkAdmin)
+    
+# Maker
+
+class PersonAdmin(admin.ModelAdmin):
     
 
-
-
-
+    list_display = (
+        'person_photo',
+        'last_name',
+        'first_name', 
+        'type', 
+        'gender',
+        'date_of_birth',
+        'birth_place',
+        'date_of_death',
+        'death_place',
+        'same_as',
+        'order',
+        'online',
+        
+        )
+    list_editable = (
+        
+        'online',
+        'order',
+        'type',
+    
+    
+    )
+    list_per_page =10
+   
+admin.site.register(Person,PersonAdmin)
 

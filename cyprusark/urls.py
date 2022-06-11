@@ -7,7 +7,9 @@ from django.conf.urls.static import static
 urlpatterns = [
 
     path('', views.homepage, name="homepage"),
-    path('<slug:slug>/', views.collection, name="collection"),
+    path('<slug:slug>/', views.bundle, name="bundle"),
+    path('<slug:slug_bundle>/<slug:slug>/', views.item, name="item"),
 
+   
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

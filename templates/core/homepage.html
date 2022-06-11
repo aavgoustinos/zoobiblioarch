@@ -13,8 +13,9 @@
 
 		<!-- Header -->
 			<header id="header" class="alt">
-				<div class="logo"><a href="/">CyprusArk <span></span></a></div>
-					
+			  {% for x in place %}
+				<div class="logo"><img src="{{x.logo.url}}" class="img-fluid img-thumbnail" alt="image" width=60px, height=60px class="responsive"></div>
+			  {% endfor %}
 				
 				<a href="#menu">Menu</a>
 		
@@ -31,10 +32,6 @@
 	       </header>
 		<!-- Banner images for slider model -->
    
-
-       
-         
-      
 		   <section class="banner full">
              {% for slide in slider %}
 				<article>
@@ -42,12 +39,14 @@
 					
 					<div class="inner">
 						<header>
+						<div class="container">
 						
 						 <p>{{slide.slider_description|safe}}</p>
 
 						 <h2>{{slide.title}}</h2>
-
+						 <button type="button" class="btn btn-secondary">Read More</button>
 						</header>
+					</div>
 					</div>
 				</article>
                 {% endfor %}
@@ -55,16 +54,17 @@
   <br>
   <br>
       <div class="container">
-            {% for x in museum %}
-			    <h2>{{x.museum_name}}</h2>
-				{% if x.logo %}
-				<img src="{{x.logo.url}}"alt="museum image" width=100px, height=107px>
-				{% endif %}
-           
-		    <hr>
-			{{x.description}}
-			<br>
-			{{x.phone}}
+            {% for x in place %}
+           <!--  <div><img src="{{x.logo.url}}" class="img-fluid img-thumbnail" alt="image" width=158px, height=100px class="responsive"></div> -->
+			<h3>{{x.name}}</h3>
+			   
+			
+			
+			Phone:{{x.phone}}<br>
+		
+			Working Hours{{x.working_hours}}<br>
+
+			{{x.sameAs}}
 			<br>
 			{% if x.city %}
 			{{x.city}}
@@ -73,7 +73,17 @@
 			{{x.country}}
 			<br>
 			{{x.address}}
+		    <br>
+			{% if x.logo %}
+
+			
+			{{x.description|safe}}
+			
+			{% endif %}	
 			{% endfor %}
+
+	
+
 	   </div>
 	   <br>
        <br>
@@ -83,22 +93,23 @@
 				<div class="inner">
 					<div class="grid-style">
                  
-                    {% for x in collection %}
+                    {% for x in  bundle %}
 					
 						<div>
 							<div class="box">
 								<div class="image fit">
 									{% if x.photo %}
-									<img src="{{x.photo.url}}"alt="museum image" width=658px, height=567px>
+									<img class="card-img-top" src="{{x.photo.url}}" alt="image" width=658px, height=700px class="responsive">
+									
 									{% endif %}
 								</div>
 								<div class="content">
 									<header class="align-center">
 										<p> Collection</p>
-										<h2>{{x.collection_name}}</h2>
+										<h2>{{x.name}}</h2>
 										
 									</header>
-									<p>{{x.description |safe|truncatewords:100}}...</p>
+									<p>{{x.description |safe|truncatewords:100}}</p>
 									<footer class="align-center">
 										<a href="{{x.slug}}" class="button alt">Learn More</a>
 									</footer>
@@ -114,8 +125,8 @@
 			<section id="two" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>Ionian University</p>
-						<h2>Power by CyprusArk</h2>
+						<p>Power by</p>
+						<h2> CyprusArk</h2>
 					</header>
 				</div>
 			</section>
@@ -148,3 +159,50 @@
 	</body>
 </html>
 
+<script type="application/ld+json">
+{
+        "@context": "https://schema.org",
+		{% for x in place %}
+
+		{% if x.classification %}
+        "@type": ["{{x.classification}}"],
+		    {% endif %}
+		{% if x.name %}
+        "name": "{{x.name}}",
+		{% endif %}
+
+		{% if x.working_hours %}
+		"workHours":
+		
+			"{{x.working_hours}}",	
+		
+		{% endif %}
+       
+	    "address": {
+                "@type": "PostalAddress",
+
+                "addressLocality": "{{x.city}}",
+                "addressCountry": "{{x.country}}"
+        },
+		"logo": "{{x.logo.url}}",
+		
+        "telephone": "{{x.phone}}",
+		
+        "description": "{{x.description }}",
+	
+		"sameAs":"{{x.sameAs}}",
+		
+		"url": " {{ request.build_absolute_uri }}",
+
+		"hasPart":{
+                "@type": "Collection",
+		       {% for x in  bundle %}
+
+				 "name": "{{x.name}}",
+				
+		       {% endfor %}	
+
+        }
+}
+{% endfor %}
+</script>

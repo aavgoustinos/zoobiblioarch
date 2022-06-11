@@ -3,54 +3,97 @@
 {% load static %}
 
 
-    
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
 {% block title %}
 
-<h1>{{collection.collection_name}}</h1>
-<h1>{{collection.museum_name}}</h1>
+    <h1> {{bundle.name}}</h1>
+    <h1> {{bundle.description | safe }} </h1>
+    <h3> Items found {{items_count}}</h3>
+   
+   
 
-{% endblock %}
+
+ {% endblock %}
+
+<!-- Body -->
 
 {% block content %}
 
 
-      <div class="container text-center">
+ <div class="container text-center">
+
+
+
+<div class="container text-center">
 
 {% for x in items %}
-{% if forloop.counter0|divisibleby:3 %} <div class="row"> {%  endif %}
+{% if forloop.counter0|divisibleby:2 %} <div class="row"> {% endif %}
  <div class="card" style="width: 36rem;">
+
+   {% if x.image_one %}
   <img class="card-img-top" src="{{x.image_one.url}}" alt="image" width=658px, height=567px class="responsive">
-
-  
-
+ 
+  {% endif %}
   <div class="card-body">
+   
     <h5 class="card-title">{{x.title}}</h5>
-    <br>
-
-     {% if x.description %}
-    <h6 class="card-title">{{x.description |safe |truncatewords:50 }}</h6>
-    {% endif %}
-
+      {% if x.date %}
+    <h5 class="card-title">{{x.date}}</h5>
+      {% endif %}
+  
     <br>
     <br>
-    <a href="/{{x.slug}}" class="button alt">Read More</a>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x ">
+    <a href="{{x.slug}}" class="button alt">Read More</a>
+    </div>
 
   </div>
 </div>
-{% if forloop.counter|divisibleby:3 or forloop.last %}</div><br>
+
+{% if forloop.counter|divisibleby:2 or forloop.last %}</div><br>
 {% endif %}
 
 
 
-
-
 {% endfor %}
+
+<script type="application/ld+json">
+{
+       "@context": "https://schema.org",
+       "@type": ["collection"],
+       "collectionSize": "{{items_count}}",
+       "name":"{{bundle.name}}",
+       "image":"{{bundle.photo}}",
+       "description":"{{bundle.description|safe }}",
+       "sameAs": "{{bundle.sameAs}}",
+       "url": "{{bundle.slug}}",
+       
+        {% for x in place %}
+        "copyrightHolder":"{{x.name}}",
+        "publisher":"{{x.name}}",
+        "isPartOf" : "{{x.name}}",
+        {% endfor %}
+
+        "hasPart":{
                 
- 
+		    {% for x in items %}
+        "@type": "{{x.classification}}",
 
- {% endblock %}
+				   "name": "{{x.title}}",
+           "url":"{{ request.build_absolute_uri }}/{{x.slug}}"
+				
+		    {% endfor %}	
+
+        }
+   
+     
+}
+
+</script>
+{% endblock %}
 
 
- <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
- <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
- <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+
+

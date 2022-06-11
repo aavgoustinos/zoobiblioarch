@@ -1,0 +1,244 @@
+{% extends 'core/base.html' %}
+{% load static %}
+   
+{% block title %}
+<h1>{{item.title}}</h1>
+  
+  
+
+{% endblock %}
+
+
+<div class="container">
+{% block content %}
+	{% if item.image_one.url %}
+<img src="{{item.image_one.url}}" class="img-fluid" alt="Responsive image">
+ {% endif %}
+<br>
+<br>
+<table class="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100%">
+	<thead>
+		<tr>
+			<th scope="col"></th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		    {% if item.title %}
+			<td><h6>Title :</h6></td>
+			<td><h6>{{item.title}}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+		    {% if item.classification %}
+			<td><h6>Classification :</h6></td>
+			<td><h6>{{item.classification }}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+			 {% if item.date%}
+			<td><h6>Date :</h6></td>
+			<td><h6>{{item.date}}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+			 {% if item.dimensions%}
+			<td><h6>Dimensions :</h6></td>
+			<td><h6>{{item.dimensions}}</h6></td>
+			{% endif %}
+		</tr>
+		
+		<tr>
+			<td><h6>Accession Number:</h6></td>
+			<td><h6>{{item.accession_number}}</h6></td>
+		</tr>
+		<tr>
+		    {% if item.culture%}
+			<td><h6>Culture :</h6></td>
+			<td><h6> {{item.culture }}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+		    {% if item.medium%}
+			<td><h6>Medium :</h6></td>
+			<td> <h6>{{item.medium }}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+	    	{% if item.creditline%}
+			<td><h6>Credit Line :</h6></td>
+			<td><h6>{{item.creditline}}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+	     	{% if item.period%}
+			<td><h6>Period :</h6></td>
+			<td><h6>{{item.period }}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+			{% if item.rights_reproduction%}
+			<td><h6>Right of Reproduction:</h6></td>
+			<td><h6>{{item.rights_reproduction}}</h6></td>
+			{% endif %}
+		</tr>
+		
+		
+		<tr>
+		    {% if item.sameAs%}
+			<td><h6>Same Items As:</h6></td>
+			<td><h6><class="link-primary"><a href="{{item.sameAs}}"</a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+  			<path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+  			<path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+			</svg></td></h6>
+{% endif %}
+		
+		</tr>
+		<tr>
+		      {% if item.description%}
+			<td><h6>Discription :</h6></td>
+			<td><h>{{item.description|safe}}</h></td>
+			{% endif %}
+		</tr>
+	</tbody>
+</table>
+
+</div>
+
+ <div class="container">
+
+  {% if item.maker.type %}
+
+  <h3>{{item.maker.type|capfirst }}</h3>
+  {% endif %}
+
+<table class="dcf-table dcf-table-responsive dcf-table-bordered dcf-table-striped dcf-w-100%">
+	<thead>
+		<tr>
+			<th scope="col"></th>
+			<th scope="col"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<tr>
+			{% if item.maker.last_name %}
+			<td><h6>Last Name</h6></td>
+			<td><h6>{{item.maker.last_name }}</h6></td>
+			{% endif %}
+		</tr>
+		</tr>
+		
+		<tr>
+		
+		{% if item.maker.first_name %}
+		<td><h6>First Name :</h6></td>
+			<td><h6>{{item.maker.first_name }}</h6></td>
+		{% endif %}
+		</tr>
+		<tr>
+		 {% if item.maker.type %}
+			<td><h6>Type :</h6></td>
+			<td><h6>{{item.maker.type }}</h6></td>
+			{% endif %}
+		</tr>
+	   <tr>
+	     {% if item.maker.date_of_birth %}
+			<td><h6>Date of Birth :</h6></td>
+			<td><h6>{{item.maker.date_of_birth}}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+	     {% if item.maker.birth_place %}
+			<td><h6>Birth Place :</h6></td>
+			<td><h6>{{item.maker.birth_place}}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+	     {% if item.maker.date_of_death %}
+			<td><h6>Date of Death :</h6></td>
+			<td><h6>{{item.maker.date_of_death}}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+	     {% if item.maker.death_place %}
+			<td><h6>Place of Death :</h6></td>
+			<td><h6>{{item.maker.death_place}}</h6></td>
+			{% endif %}
+		</tr>
+		<tr>
+	     {% if item.maker.gender %}
+			<td><h6>Gender :</h6></td>
+			<td><h6>{{item.maker.gender}}</h6></td>
+			{% endif %}
+
+		</tr>
+		 {% if item.maker.same_as %}
+			<td><h6>Same Person As:</h6></td>
+			<td><h6><class="link-primary"><a href="{{item.maker.same_as}}"</a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+  			<path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
+  			<path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/>
+			</svg></td></h6>
+		
+		</tr>
+		
+	{% endif %}
+
+   <div class="card mb-3">
+
+  {% if item.maker.photo.url %}
+
+  <img class="card-img-top" src="{{item.maker.photo.url}}" alt="Maker Have no Image or photo"style="width:200px;height:200px;>
+
+  {% endif %}
+  <div class="card-body">
+		
+		
+	</tbody>
+</table>
+</div>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{item.classification }}",
+  "name": "{{item.title}}",
+  "dateCreated": "{{item.date}}",
+  "materials": "{{item.medium}}",
+  "identifier": "{{item.accession_number}}",
+  "image": "{{item.image_one}}",
+  "sameAs": "{{item.sameAs}}",
+  "url": "{{item.slug}}",
+ 
+  "{{item.maker.type}}": {
+    "@type": "Person",
+    "birthDate": "{{item.maker.date_of_birth}}",
+	"birthPlace": "{{item.maker.birth_place}}",
+	"deathDate": "{{item.maker.date_of_death}}",
+	"deathPlace": "{{item.maker.death_place}}",
+	"gender": "{{item.maker.gender}}",
+	"image": "{{item.maker.photo}}",
+	"sameAs": "{{item.maker.same_as}}",
+  },
+  
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock %}
+
+
+ <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+ <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
