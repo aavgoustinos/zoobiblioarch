@@ -4,8 +4,6 @@
 {% block title %}
 <h1>{{item.title}}</h1>
   
-  
-
 {% endblock %}
 
 
@@ -124,7 +122,7 @@
 		<tr>
 			<tr>
 			{% if item.maker.last_name %}
-			<td><h6>Last Name</h6></td>
+			<td><h6>Last Name :</h6></td>
 			<td><h6>{{item.maker.last_name }}</h6></td>
 			{% endif %}
 		</tr>
@@ -203,25 +201,33 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "{{item.classification }}",
+  "@type": ["CreativeWork","VisualArtwork","{{item.artform }}"],
   "name": "{{item.title}}",
   "dateCreated": "{{item.date}}",
-  "materials": "{{item.medium}}",
   "identifier": "{{item.accession_number}}",
   "image": "{{item.image_one}}",
   "sameAs": "{{item.sameAs}}",
   "url": "{{item.slug}}",
+  "artform":"{{item.artform}}",
+  "artMedium":"{{item.art_medium}}",
+  "artworkSurface":"{{item.artworkSurface}}",
+  "additionalType": "{{item.additionalType}}",
  
-  "{{item.maker.type}}": {
+    "{{item.maker.type}}":
+	{
     "@type": "Person",
+	"familyName": "{{item.maker.last_name}}",
+	"givenName": "{{item.maker.first_name}}",
     "birthDate": "{{item.maker.date_of_birth}}",
 	"birthPlace": "{{item.maker.birth_place}}",
 	"deathDate": "{{item.maker.date_of_death}}",
 	"deathPlace": "{{item.maker.death_place}}",
 	"gender": "{{item.maker.gender}}",
 	"image": "{{item.maker.photo}}",
-	"sameAs": "{{item.maker.same_as}}",
-  },
+	"sameAs": "{{item.maker.same_as}}"
+	
+	
+  }
   
 }
 </script>

@@ -53,31 +53,48 @@
             </section>
   <br>
   <br>
+  
       <div class="container">
             {% for x in place %}
-           <!--  <div><img src="{{x.logo.url}}" class="img-fluid img-thumbnail" alt="image" width=158px, height=100px class="responsive"></div> -->
-			<h3>{{x.name}}</h3>
-			   
-			
-			
-			Phone:{{x.phone}}<br>
-		
-			Working Hours{{x.working_hours}}<br>
 
+
+
+<!--  <div><img src="{{x.logo.url}}" class="img-fluid img-thumbnail" alt="image" width=158px, height=100px class="responsive"></div> -->
+		
+		
+		
+		    {% if x.name %}
+			<h3>{{x.name}}</h3>
+            {% endif %}
+		
+			
+			{% if x.phone %}
+			Phone:{{x.phone}}<br>
+			{% endif %}
+		    {% if x.working_hours %}
+			Working Hours{{x.working_hours}}<br>
+			{% endif %}
+            {% if x.sameAs %}
 			{{x.sameAs}}
+			{% endif %}
 			<br>
 			{% if x.city %}
 			{{x.city}}
 			{% endif %}
 			<br>
+			{% if x.country %}
 			{{x.country}}
+			{% endif %}
 			<br>
+			{% if x.address %}
 			{{x.address}}
+			{% endif %}
 		    <br>
 			{% if x.logo %}
-
-			
+            
+			{% if x.description %}
 			{{x.description|safe}}
+			{% endif %}
 			
 			{% endif %}	
 			{% endfor %}
@@ -165,14 +182,14 @@
 		{% for x in place %}
 
 		{% if x.classification %}
-        "@type": ["{{x.classification}}"],
+        "@type": "{{x.classification}}",
 		    {% endif %}
 		{% if x.name %}
         "name": "{{x.name}}",
 		{% endif %}
 
 		{% if x.working_hours %}
-		"workHours":
+		"openingHours":
 		
 			"{{x.working_hours}}",	
 		
@@ -192,17 +209,12 @@
 	
 		"sameAs":"{{x.sameAs}}",
 		
-		"url": " {{ request.build_absolute_uri }}",
+		"url": " {{ request.build_absolute_uri }}"
+	   
+	
+  }
+      
+		
 
-		"hasPart":{
-                "@type": "Collection",
-		       {% for x in  bundle %}
-
-				 "name": "{{x.name}}",
-				
-		       {% endfor %}	
-
-        }
-}
 {% endfor %}
 </script>

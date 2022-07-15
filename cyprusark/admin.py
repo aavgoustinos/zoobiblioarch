@@ -1,6 +1,5 @@
 from django.contrib import admin
-
-from .models import Bundle, Slider, Place, CreativeWork, Person
+from .models import  CreativeWork,  Bundle, Slider, Place, Person
 
 
 admin.site.index_title  =  "Admin Area"
@@ -68,7 +67,7 @@ class CreativeWorkAdmin(admin.ModelAdmin):
 
         'creative_photo',
         'title',
-        'classification',
+        #'classification',
         'date',
         'period',
         'maker',
@@ -79,7 +78,7 @@ class CreativeWorkAdmin(admin.ModelAdmin):
     list_filter = (
         
         'date',
-        'classification',
+       # 'classification',
         'period',
     
      
@@ -88,7 +87,7 @@ class CreativeWorkAdmin(admin.ModelAdmin):
     list_editable = (
         
         'online',
-        'classification',
+       # 'classification',
         'order',
     )
     list_per_page =10

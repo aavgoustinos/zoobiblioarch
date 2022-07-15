@@ -1,12 +1,27 @@
 version: "3.8"
 services:
-  web:
-     build: .
+  cyprusark:
+    build: .
+    volumes:
+      - .:/cyprusark
+    ports:
+      - 8000:8000
+    image: cyprusark:cyprusark
+    container_name: cyprusark_container
+    command: python manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - db 
+  db:
+     image: postgres
      volumes:
-      - .:/django
-     command: python manage.py runserver 0.0.0.0:8001
+       - ./data/db:/var/lib/postgresql/data
+     environment:
+       - POSTGRES_DB=postgres
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=postgres
+     container_name: cyprusark_postgres_db
      ports:
-      - 8001:8001
-   
+     - 5432:5432
+    
 
 

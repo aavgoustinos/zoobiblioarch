@@ -9,8 +9,10 @@
 {% block title %}
 
     <h1> {{bundle.name}}</h1>
+    <br>
     <h1> {{bundle.description | safe }} </h1>
-    <h3> Items found {{items_count}}</h3>
+   
+    
    
    
 
@@ -20,8 +22,8 @@
 <!-- Body -->
 
 {% block content %}
-
-
+<h3> Items Found in this Collection {{items_count}}</h3>
+<br>
  <div class="container text-center">
 
 
@@ -62,32 +64,20 @@
 <script type="application/ld+json">
 {
        "@context": "https://schema.org",
-       "@type": ["collection"],
+       "@type": ["CreativeWork","Collection"],
        "collectionSize": "{{items_count}}",
        "name":"{{bundle.name}}",
        "image":"{{bundle.photo}}",
-       "description":"{{bundle.description|safe }}",
+       "description":"{{bundle.description}}",
        "sameAs": "{{bundle.sameAs}}",
        "url": "{{bundle.slug}}",
-       
+
         {% for x in place %}
         "copyrightHolder":"{{x.name}}",
         "publisher":"{{x.name}}",
-        "isPartOf" : "{{x.name}}",
+        "isPartOf" : "{{x.name}}"
+       
         {% endfor %}
-
-        "hasPart":{
-                
-		    {% for x in items %}
-        "@type": "{{x.classification}}",
-
-				   "name": "{{x.title}}",
-           "url":"{{ request.build_absolute_uri }}/{{x.slug}}"
-				
-		    {% endfor %}	
-
-        }
-   
      
 }
 
