@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- This script got from frontendfreecode.com -->
+<!-- CSS only -->
+
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css'>
+<link rel='stylesheet' href='https://rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/css/bootstrap-editable.css'>
+
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/editable/bootstrap-table-editable.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/export/bootstrap-table-export.js'></script>
+<script src="http://frontendfreecode.com/codes/files/tableExport.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.9.1/extensions/filter-control/bootstrap-table-filter-control.js'></script>
+
+
+
+
+
+<style>
+.container {
+    padding: 2em;
+}
+
+.bold-blue {
+    font-weight: bold;
+    color: peru;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: peru;
+    border-color: peru;
+}
+</style>
+
+</head>
+
+<body>
+<div class="container-md">
+	<h1>ZooBiblioArch </h1>
+	<h4>To view abstracts, click on the right <span class="glyphicon glyphicon-th"></span> and select abstract.</h4>
+	
+	<div id="toolbar">
+		<select class="form-control">
+			<option value="">Export Articles</option>
+			<option value="all">Export All</option>
+			<option value="selected">Export Selected</option>
+		</select>
+	</div>
+ 
+	<table id="table" class="table table-striped table-responsive-md btn-table"
+	   data-toggle="table" 
+	   data-show-toggle="true"
+	   data-show-columns="true"
+       data-show-pagination-switch="true"
+       data-pagination="true"
+       data-page-list="[5, 10, 50, 100, all]"
+	   
+	   data-search="true"
+	   data-filter-control="true"
+	   data-show-export="true"
+	   data-click-to-select="true"
+	   data-toolbar="#toolbar">
+       
+       
+		<thead>
+		 
+			<tr>
+				<th data-field="state" data-checkbox="true"></th>
+				<th data-field="title" data-filter-control="input" data-sortable="true">Title</th>
+				<th data-field="date" data-filter-control="select" data-sortable="true">Year</th>
+				<th data-field="DOI" data-filter-control="select" data-sortable="true">DOI</th>
+				<th data-field="authors" data-filter-control="select" data-sortable="true">Authors</th>
+				<th data-field="keywords" data-filter-control="select" data-sortable="true">Keywords</th>
+			    <th data-field="abstract" data-filter-control="input" data-visible="false">Abstract</th>
+			
+			</tr>
+		</thead>
+		<tbody>
+    {% for x in article %}
+            
+
+			<tr>
+				<td class="bs-checkbox "><input data-index="0" name="btSelectItem" type="checkbox"></td>
+				<td>{{x.title}}</td>
+				<td>{{x.year}}</td>
+				<td>{{ x.DOI}}</td>
+				<td>{% for a in x.author.all %} {{a.last_name}} , {{a.first_name | first  }} {% endfor %}</td>
+				<td>{% for k in x.keyword.all %} {{k.keyword}}, {% endfor %}</td>
+				<td>{{ x.abstract}}</td>
+			</tr>
+			
+			
+    
+		{% endfor %}
+    
+		</tbody>
+    
+	</table>
+  
+<a href="http://localhost:8000/code" <button type="button" class="btn btn-dark">RESET</button></a>
+
+
+</div>
+<script>
+var $table = $('#table');
+$(function () {
+    $('#toolbar').find('select').change(function () {
+        $table.bootstrapTable('refreshOptions', {
+            exportDataType: $(this).val()
+        });
+    });
+})
+var trBoldBlue = $("table");
+$(trBoldBlue).on("click", "tr", function () {
+    $(this).toggleClass("bold-blue");
+});
+
+$(document).ready(function () {
+  $('#table').DataTable({
+    "paging": false // false to disable pagination (or any other option)
+  });
+  $('.dataTables_length').addClass('bs-select');
+});
+
+</script>
+
+
+
+</body>
+
+</html>
+
+
+<!-- JavaScript Bundle with Popper -->
+
+
+
+<!-- By default uses Roboto font. Be sure to load this or change the font -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

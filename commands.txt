@@ -9,6 +9,7 @@ Part#3
 docker-compose build
 docker-compose run --rm app django-admin startproject core .
 docker-compose up
-docker exec -it django_container /bin/bash
+
+docker exec -it 1a326af8c877 /bin/bash
 docker ps
 docker-compose up -d --build

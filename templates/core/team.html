@@ -1,0 +1,98 @@
+
+{% extends "core/base.html" %}
+
+{% load static %}
+
+
+{% block title %}
+ Our Team
+{% endblock %}
+
+{% block content %}
+
+ <!-- Team Start -->
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="text-primary text-uppercase mb-2"></p>
+                <h1 class="display-6 mb-4"></h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-thumbnail" src="{% static 'img/team/team-1.jpg'%}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>Efthimya Nikita</h5>
+                                <span>Assistant Professor in Bioarchaeology</span>
+
+                            </div>
+                            <div class="team-social">
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="far fa-arrow-alt-circle-right"></i></a>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-thumbnail" src="{% static 'img/team/team-2.jpg'%}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>Mahmoud Mardini</h5>
+                                <span>Designation</span>
+                            </div>
+                            <div class="team-social">
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-thumbnail" src="{% static 'img/team/team-3.jpg'%}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>Antonio Caruso</h5>
+                                <span>Designation</span>
+                            </div>
+                            <div class="team-social">
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <img class="img-thumbnail" src="{% static 'img/team/team-2.jpg'%}" alt="">
+                        <div class="team-text">
+                            <div class="team-title">
+                                <h5>Full Name</h5>
+                                <span>Designation</span>
+                                 
+                            
+                            </div>
+                            <div class="team-social">
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square btn-light rounded-circle" href=""><i class="fab fa-instagram"></i></a>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+{% endblock %}

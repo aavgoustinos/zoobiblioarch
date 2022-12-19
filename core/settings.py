@@ -29,8 +29,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sortedm2m',
+
     'ckeditor',
-    'cyprusark',
+    'django_filters',
+    'zoobiblioarch',
+    
+    
+
+    
    
 ]
 
@@ -65,15 +72,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
-      'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'postgres',
-         'USER': 'postgres',
-         'PASSWORD': 'postgres',
-         'HOST': 'db',
-         'PORT': 5432,
-     }
-     
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
+    }
 }
 
 
